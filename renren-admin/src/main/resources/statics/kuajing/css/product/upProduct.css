@@ -1,0 +1,84 @@
+
+.box>p{
+    padding: 10px;
+    overflow: hidden;
+}
+
+button{
+    float: right;
+    margin-right: 20px;
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 14px;
+    border: 0;
+    background: url("../../img/create_bg.png");
+    background-size: 100% 100%;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.operation{
+    width: 180px;
+    display: flex;
+}
+.operation>div{
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+.operation>div i{
+    font-size: 18px!important;
+}
+.operation>div p{
+    font-size: 12px;
+}
+.operation>div:nth-child(1){
+    color: #e2700b;
+}
+.operation>div:nth-child(2){
+    color: #67b502;
+}
+.operation>div:nth-child(3){
+    color: #32ace9;
+}
+table{
+    width: 100%;
+}
+table , table tr , table tr td{
+    border: 0;
+}
+
+table tr{
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 3px;
+
+}
+table tr:nth-child(1){
+    margin-bottom: 0;
+    background: none;
+}
+table tr.hilite{
+    background: rgba(255,255,255,.5);
+    box-shadow: 0 0 10px #ccc;
+}
+table tr td, table tr th{
+    padding: 6px 10px;
+    text-align: center;
+}
+table tr td{
+    color: #444;
+    border-bottom: 2px solid #f2f2f2;
+}
+table tr th{
+    font-size: 15px;
+    font-weight: bold;
+    /*text-align: left;*/
+    color: #555;
+}
+
+table tr td img{
+    width: 50px;
+    border-radius: 3px;
+}

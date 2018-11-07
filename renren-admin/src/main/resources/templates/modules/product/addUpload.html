@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加上传</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/product/detailsProduct.css" media="all">
+    <style>
+        .pro_inf>span>p,
+        .pro_inf>p{
+            color: #ffa64c;
+            font-size: 13px;
+        }
+        .check span input{
+            margin-right: 8px;
+            margin-left: 15px;
+        }
+        .check span:nth-child(1) input{
+            margin-left: 0;
+        }
+
+
+        #fenleiTankuang div.con{
+            display: flex;
+            padding: 30px 10px 10px 10px;
+            height: 400px;
+        }
+        #fenleiTankuang div.con>div{
+            flex: 1;
+            border: 1px solid #bbb;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        #fenleiTankuang div.con>div ul li{
+            color: #555;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #fenleiTankuang{
+            display: none;
+        }
+        form>.fenleiCon{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="step">
+
+
+    <form>
+        <p>
+            <span class="layui-breadcrumb" style="visibility: visible;">
+              <a href="javascript:window.location.href = document.referrer;">上传产品 / </a>
+              <a><cite>添加上传</cite></a>
+            </span>
+
+            <button class="save">立即上传</button>
+            <button class="save">定时上传</button>
+        </p>
+
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>导出产品</h4>
+                </div>
+                <div class="pro_inf daochu">
+                    <span>
+                        <label for="">开始编号：</label><input type="text" placeholder="建议填写">
+                        <p>产品编号都是递增的，本次要导出产品起始编号</p>
+                    </span> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>
+                        <label for="">结束编号：</label><input type="text" placeholder="建议填写">
+                        <p>要导出产品的结束编号，结束编号起始编号</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>产品ID</h4>
+                </div>
+                <div class="pro_inf">
+                    <span><textarea placeholder="产品ID"></textarea></span><br>
+                    <p>填写产品ID后（都好隔开），将只上传填写的ID列表，不填写则上传其他条件的筛选出的产品</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>授权店铺</h4>
+                </div>
+                <div class="pro_inf">
+                    <select name="marketplace" id="marketplace" class="form-control" style="width: 200px">
+                        <option value="">选择</option>
+                        <option v-for="item in marketplace" :value="item.value" :data-country="item.country" data-region="eu" :data-language="item.language" :data-currency="item.currency">
+                            {{ item.name }}
+                        </option>
+                    </select>
+                    <span></span>
+
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <h4>更新选项</h4>
+                </div>
+                <div class="pro_inf check" id="">
+
+                    <span><input type="checkbox" class="input_check" id="check3"> 全部</span>
+                    <span><input type="checkbox" class="input_check"> 基本信息</span>
+                    <span><input type="checkbox" class="input_check"> 关系</span>
+                    <span><input type="checkbox" class="input_check"> 图片</span>
+                    <span><input type="checkbox" class="input_check"> 库存</span>
+                    <span><input type="checkbox" class="input_check"> 价格</span>
+                    <p>如果只更新产品信息，则不需要选中上面选项</p>
+                </div>
+            </div>
+        </div>
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>选择分类</h4>
+                </div>
+                <div class="pro_inf">
+                    <span><input type="text" class="changeType" placeholder="--选择--"></span>
+                    <button>历史选择</button>
+                    <p></p>
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <h4>分类模板</h4>
+                </div>
+                <div class="pro_inf">
+                    <span>
+                        <select name="cat_type_file" id="cat_type_file" class="form-control" style="width:400px;;">
+                            <option value=""> -- 选择 -- </option>
+                            <option data-region="eu" value="Sports.SportingGoods.json" style="display: none;">体育/体育用品 Sports.SportingGoods</option>
+                            <option data-region="na" value="Sports.SportingGoods.json">体育/体育用品 Sports.SportingGoods</option>
+                            <option data-region="na" value="Outdoors.OutdoorRecreationProduct.json">户外/户外娱乐产品 Outdoors.OutdoorRecreationProduct</option>
+                            <option data-region="eu" value="Office.WritingInstruments.json" style="display: none;">办公/书写工具 Office.WritingInstruments</option>
+                            <option data-region="eu" value="Office.PaperProducts.json" style="display: none;">办公/纸类 Office.PaperProducts</option>
+                            <option data-region="eu" value="Office.OfficeProducts.json" style="display: none;">办公/办公用品 Office.OfficeProducts</option>
+                            <option data-region="na" value="Office.OfficeProducts.json">办公/办公用品 Office.OfficeProducts</option>
+                            <option data-region="na" value="Office.OfficePrinter.json">办公/印刷 Office.OfficePrinter</option>
+                            <option data-region="na" value="Office.OfficePhone.json">办公/电话 Office.OfficePhone</option>
+                            <option data-region="na" value="Office.OfficeElectronics.json">办公/办公电子 Office.OfficeElectronics</option>
+                            <option data-region="eu" value="Office.OfficeElectronics.json" style="display: none;">办公/办公电子 Office.OfficeElectronics</option>
+                            <option data-region="eu" value="Office.EducationalSupplies.json" style="display: none;">办公/教育相关 Office.EducationalSupplies</option>
+                            <option data-region="eu" value="Office.Calculator.json" style="display: none;">办公/计算器 Office.Calculator</option>
+                            <option data-region="na" value="Office.Calculator.json">办公/计算器 Office.Calculator</option>
+                            <option data-region="na" value="Office.ArtSupplies.json">办公/美工艺术 Office.ArtSupplies</option>
+                            <option data-region="eu" value="Office.ArtSupplies.json" style="display: none;">办公/美工艺术 Office.ArtSupplies</option>
+                            <option data-region="eu" value="HomeImprovement.Tools.json" style="display: none;">工具家装/工具设备部件 HomeImprovement.Tools</option>
+                            <option data-region="na" value="HomeImprovement.Tools.json">工具家装/工具设备部件 HomeImprovement.Tools</option>
+                            <option data-region="eu" value="HomeImprovement.SecurityElectronics.json" style="display: none;">工具家装/安全电子 HomeImprovement.SecurityElectronics</option>
+                            <option data-region="na" value="HomeImprovement.PlumbingFixtures.json">工具家装/管具设备 HomeImprovement.PlumbingFixtures</option>
+                            <option data-region="eu" value="HomeImprovement.PlumbingFixtures.json" style="display: none;">工具家装/管具设备 HomeImprovement.PlumbingFixtures</option>
+                            <option data-region="eu" value="HomeImprovement.OrganizersAndStorage.json" style="display: none;">工具家装/置物存储 HomeImprovement.OrganizersAndStorage</option>
+                            <option data-region="eu" value="HomeImprovement.Hardware.json" style="display: none;">工具家装/五金 HomeImprovement.Hardware</option>
+                            <option data-region="eu" value="HomeImprovement.BuildingMaterials.json" style="display: none;">工具家装/建筑材料 HomeImprovement.BuildingMaterials</option>
+                            <option data-region="eu" value="Home.SeedsAndPlants.json" style="display: none;">家居/种子植物 Home.SeedsAndPlants</option>
+                            <option data-region="na" value="Home.SeedsAndPlants.json">家居/种子植物 Home.SeedsAndPlants</option>
+                            <option data-region="eu" value="Home.OutdoorLiving.json" style="display: none;">家居/户外生活 Home.OutdoorLiving</option>
+                            <option data-region="na" value="Home.OutdoorLiving.json">家居/户外生活 Home.OutdoorLiving</option>
+                            <option data-region="eu" value="Home.Kitchen.json" style="display: none;">家居/厨房 Home.Kitchen</option>
+                            <option data-region="na" value="Home.Kitchen.json">家居/厨房 Home.Kitchen</option>
+                            <option data-region="eu" value="Home.Home.json" style="display: none;">家居/家居 Home.Home</option>
+                            <option data-region="na" value="Home.Home.json">家居/家居 Home.Home</option>
+                            <option data-region="eu" value="Home.FurnitureAndDecor.json" style="display: none;">家居/家具装饰 Home.FurnitureAndDecor</option>
+                            <option data-region="na" value="Home.FurnitureAndDecor.json">家居/家具装饰 Home.FurnitureAndDecor</option>
+                            <option data-region="na" value="Home.BedAndBath.json">家居/床品沐浴用品 Home.BedAndBath</option>
+                            <option data-region="eu" value="Home.BedAndBath.json" style="display: none;">家居/床品沐浴用品 Home.BedAndBath</option>
+                            <option data-region="eu" value="Home.Art.json" style="display: none;">家居/艺术品 Home.Art</option>
+                            <option data-region="na" value="Home.Art.json">家居/艺术品 Home.Art</option>
+                            <option data-region="eu" value="Clothing.Yukata.json" style="display: none;">服装/日式浴衣 Clothing.Yukata</option>
+                            <option data-region="na" value="Clothing.Yukata.json">服装/日式浴衣 Clothing.Yukata</option>
+                            <option data-region="eu" value="Clothing.Underwear.json" style="display: none;">服装/内衣 Clothing.Underwear</option>
+                            <option data-region="na" value="Clothing.Underwear.json">服装/内衣 Clothing.Underwear</option>
+                            <option data-region="eu" value="Clothing.Swimwear.json" style="display: none;">服装/泳衣 Clothing.Swimwear</option>
+                            <option data-region="na" value="Clothing.Swimwear.json">服装/泳衣 Clothing.Swimwear</option>
+                            <option data-region="eu" value="Clothing.Sweater.json" style="display: none;">服装/毛衣 Clothing.Sweater</option>
+                            <option data-region="na" value="Clothing.Sweater.json">服装/毛衣 Clothing.Sweater</option>
+                            <option data-region="eu" value="Clothing.Suit.json" style="display: none;">服装/西服 Clothing.Suit</option>
+                            <option data-region="na" value="Clothing.Suit.json">服装/西服 Clothing.Suit</option>
+                            <option data-region="eu" value="Clothing.SocksHosiery.json" style="display: none;">服装/袜子.针织品 Clothing.SocksHosiery</option>
+                            <option data-region="na" value="Clothing.SocksHosiery.json">服装/袜子.针织品 Clothing.SocksHosiery</option>
+                            <option data-region="eu" value="Clothing.Sleepwear.json" style="display: none;">服装/睡衣 Clothing.Sleepwear</option>
+                            <option data-region="na" value="Clothing.Sleepwear.json">服装/睡衣 Clothing.Sleepwear</option>
+                            <option data-region="eu" value="Clothing.Skirt.json" style="display: none;">服装/裙子 Clothing.Skirt</option>
+                            <option data-region="na" value="Clothing.Skirt.json">服装/裙子 Clothing.Skirt</option>
+                            <option data-region="eu" value="Clothing.Shorts.json" style="display: none;">服装/短裤 Clothing.Shorts</option>
+                            <option data-region="na" value="Clothing.Shorts.json">服装/短裤 Clothing.Shorts</option>
+                            <option data-region="eu" value="Clothing.Shoes.json" style="display: none;">服装/鞋 Clothing.Shoes</option>
+                            <option data-region="na" value="Clothing.Shoes.json">服装/鞋 Clothing.Shoes</option>
+                            <option data-region="eu" value="Clothing.Shirt.json" style="display: none;">服装/衬衣 Clothing.Shirt</option>
+                            <option data-region="na" value="Clothing.Shirt.json">服装/衬衣 Clothing.Shirt</option>
+                            <option data-region="eu" value="Clothing.PersonalBodyCare.json" style="display: none;">服装/私人身体护理 Clothing.PersonalBodyCare</option>
+                            <option data-region="na" value="Clothing.PersonalBodyCare.json">服装/私人身体护理 Clothing.PersonalBodyCare</option>
+                            <option data-region="eu" value="Clothing.Pants.json" style="display: none;">服装/裤子 Clothing.Pants</option>
+                            <option data-region="na" value="Clothing.Pants.json">服装/裤子 Clothing.Pants</option>
+                            <option data-region="eu" value="Clothing.Outerwear.json" style="display: none;">服装/外套 Clothing.Outerwear</option>
+                            <option data-region="na" value="Clothing.Outerwear.json">服装/外套 Clothing.Outerwear</option>
+                            <option data-region="eu" value="Clothing.Obi.json" style="display: none;"> Clothing.Obi</option>
+                            <option data-region="na" value="Clothing.Obi.json"> Clothing.Obi</option>
+                            <option data-region="eu" value="Clothing.NonApparelMisc.json" style="display: none;"> Clothing.NonApparelMisc</option>
+                            <option data-region="na" value="Clothing.NonApparelMisc.json"> Clothing.NonApparelMisc</option>
+                            <option data-region="eu" value="Clothing.Kimono.json" style="display: none;">服装/和服 Clothing.Kimono</option>
+                            <option data-region="na" value="Clothing.Kimono.json">服装/和服 Clothing.Kimono</option>
+                            <option data-region="eu" value="Clothing.Jinbei.json" style="display: none;"> Clothing.Jinbei</option>
+                            <option data-region="na" value="Clothing.Jinbei.json"> Clothing.Jinbei</option>
+                            <option data-region="eu" value="Clothing.Jewelry.json" style="display: none;">服装/珠宝 Clothing.Jewelry</option>
+                            <option data-region="na" value="Clothing.Jewelry.json">服装/珠宝 Clothing.Jewelry</option>
+                            <option data-region="eu" value="Clothing.HomeAccessory.json" style="display: none;">服装/家居服？ Clothing.HomeAccessory</option>
+                            <option data-region="na" value="Clothing.HomeAccessory.json">服装/家居服？ Clothing.HomeAccessory</option>
+                            <option data-region="eu" value="Clothing.Hat.json" style="display: none;">服装/帽子 Clothing.Hat</option>
+                            <option data-region="na" value="Clothing.Hat.json">服装/帽子 Clothing.Hat</option>
+                            <option data-region="eu" value="Clothing.EthnicWear.json" style="display: none;">服装/民族服饰 Clothing.EthnicWear</option>
+                            <option data-region="na" value="Clothing.EthnicWear.json">服装/民族服饰 Clothing.EthnicWear</option>
+                            <option data-region="na" value="Clothing.Dress.json">服装/连衣裙.女装 Clothing.Dress</option>
+                            <option data-region="eu" value="Clothing.Dress.json" style="display: none;">服装/连衣裙.女装 Clothing.Dress</option>
+                            <option data-region="eu" value="Clothing.Costume.json" style="display: none;">服装/服装 Clothing.Costume</option>
+                            <option data-region="na" value="Clothing.Costume.json">服装/服装 Clothing.Costume</option>
+                            <option data-region="eu" value="Clothing.ChildrensCostume.json" style="display: none;">服装/童装 Clothing.ChildrensCostume</option>
+                            <option data-region="na" value="Clothing.ChildrensCostume.json">服装/童装 Clothing.ChildrensCostume</option>
+                            <option data-region="eu" value="Clothing.Chanchanko.json" style="display: none;">服装/Chanchanko Clothing.Chanchanko</option>
+                            <option data-region="na" value="Clothing.Chanchanko.json">服装/Chanchanko Clothing.Chanchanko</option>
+                            <option data-region="eu" value="Clothing.Bra.json" style="display: none;">服装/胸罩 Clothing.Bra</option>
+                            <option data-region="na" value="Clothing.Bra.json">服装/胸罩 Clothing.Bra</option>
+                            <option data-region="eu" value="Clothing.Blazer.json" style="display: none;">服装/运动上衣 Clothing.Blazer</option>
+                            <option data-region="na" value="Clothing.Blazer.json">服装/运动上衣 Clothing.Blazer</option>
+                            <option data-region="eu" value="Clothing.Bag.json" style="display: none;">服装/箱包 Clothing.Bag</option>
+                            <option data-region="na" value="Clothing.Bag.json">服装/箱包 Clothing.Bag</option>
+                            <option data-region="eu" value="Clothing.BabyCostume.json" style="display: none;">服装/婴儿服装 Clothing.BabyCostume</option>
+                            <option data-region="na" value="Clothing.BabyCostume.json">服装/婴儿服装 Clothing.BabyCostume</option>
+                            <option data-region="eu" value="Clothing.AdultCostume.json" style="display: none;">服装/成人服装 Clothing.AdultCostume</option>
+                            <option data-region="na" value="Clothing.AdultCostume.json">服装/成人服装 Clothing.AdultCostume</option>
+                            <option data-region="na" value="Clothing.Accessory.json">服装/配件 Clothing.Accessory</option>
+                            <option data-region="eu" value="Clothing.Accessory.json" style="display: none;">服装/配件 Clothing.Accessory</option>
+                            <option data-region="eu" value="CE.VideoProjectorsAndAccessories.json" style="display: none;">电子/视频播放器及周边 CE.VideoProjectorsAndAccessories</option>
+                            <option data-region="na" value="CE.VideoProjectorsAndAccessories.json">电子/视频播放器及周边 CE.VideoProjectorsAndAccessories</option>
+                            <option data-region="eu" value="CE.VCR.json" style="display: none;">电子/VCR录像机 CE.VCR</option>
+                            <option data-region="na" value="CE.VCR.json">电子/VCR录像机 CE.VCR</option>
+                            <option data-region="eu" value="CE.TwoWayRadio.json" style="display: none;">电子/双向无线电设备 CE.TwoWayRadio</option>
+                            <option data-region="na" value="CE.TwoWayRadio.json">电子/双向无线电设备 CE.TwoWayRadio</option>
+                            <option data-region="eu" value="CE.TVCombos.json" style="display: none;">电子/机顶盒？ CE.TVCombos</option>
+                            <option data-region="na" value="CE.TVCombos.json">电子/机顶盒？ CE.TVCombos</option>
+                            <option data-region="eu" value="CE.Tuner.json" style="display: none;">电子/调谐器 CE.Tuner</option>
+                            <option data-region="na" value="CE.Tuner.json">电子/调谐器 CE.Tuner</option>
+                            <option data-region="eu" value="CE.Television.json" style="display: none;">电子/电视 CE.Television</option>
+                            <option data-region="na" value="CE.Television.json">电子/电视 CE.Television</option>
+                            <option data-region="eu" value="CE.StereoShelfSystem.json" style="display: none;">电子/立体声系统 CE.StereoShelfSystem</option>
+                            <option data-region="na" value="CE.StereoShelfSystem.json">电子/立体声系统 CE.StereoShelfSystem</option>
+                            <option data-region="eu" value="CE.Speakers.json" style="display: none;">电子/音响喇叭 CE.Speakers</option>
+                            <option data-region="na" value="CE.Speakers.json">电子/音响喇叭 CE.Speakers</option>
+                            <option data-region="eu" value="CE.RemoteControl.json" style="display: none;">电子/遥控 CE.RemoteControl</option>
+                            <option data-region="na" value="CE.RemoteControl.json">电子/遥控 CE.RemoteControl</option>
+                            <option data-region="eu" value="CE.ReceiverOrAmplifier.json" style="display: none;">电子/接收|功放 CE.ReceiverOrAmplifier</option>
+                            <option data-region="na" value="CE.ReceiverOrAmplifier.json">电子/接收|功放 CE.ReceiverOrAmplifier</option>
+                            <option data-region="eu" value="CE.RadioOrClockRadio.json" style="display: none;">电子/收音机 CE.RadioOrClockRadio</option>
+                            <option data-region="na" value="CE.RadioOrClockRadio.json">电子/收音机 CE.RadioOrClockRadio</option>
+                            <option data-region="eu" value="CE.RadarDetector.json" style="display: none;">电子/雷达探测 CE.RadarDetector</option>
+                            <option data-region="na" value="CE.RadarDetector.json">电子/雷达探测 CE.RadarDetector</option>
+                            <option data-region="eu" value="CE.PowerSuppliesOrProtection.json" style="display: none;">电子/充电器或保护设备 CE.PowerSuppliesOrProtection</option>
+                            <option data-region="na" value="CE.PowerSuppliesOrProtection.json">电子/充电器或保护设备 CE.PowerSuppliesOrProtection</option>
+                            <option data-region="eu" value="CE.PortableAvDevice.json" style="display: none;">电子/便携播放设备 CE.PortableAvDevice</option>
+                            <option data-region="na" value="CE.PortableAvDevice.json">电子/便携播放设备 CE.PortableAvDevice</option>
+                            <option data-region="na" value="CE.PortableAudio.json">电子/便携音乐播放器 CE.PortableAudio</option>
+                            <option data-region="eu" value="CE.PortableAudio.json" style="display: none;">电子/便携音频 CE.PortableAudio</option>
+                            <option data-region="eu" value="CE.PhotographicStudioItems.json" style="display: none;">电子/图片工作相关 CE.PhotographicStudioItems</option>
+                            <option data-region="na" value="CE.PhotographicStudioItems.json">电子/图片工作相关 CE.PhotographicStudioItems</option>
+                            <option data-region="eu" value="CE.PhoneAccessory.json" style="display: none;">电子/电话机周边 CE.PhoneAccessory</option>
+                            <option data-region="na" value="CE.PhoneAccessory.json">电子/电话机周边 CE.PhoneAccessory</option>
+                            <option data-region="eu" value="CE.Phone.json" style="display: none;">电子/电话机 CE.Phone</option>
+                            <option data-region="na" value="CE.Phone.json">电子/电话机 CE.Phone</option>
+                            <option data-region="eu" value="CE.PDA.json" style="display: none;">电子/掌上电脑 CE.PDA</option>
+                            <option data-region="na" value="CE.PDA.json">电子/掌上电脑 CE.PDA</option>
+                            <option data-region="eu" value="CE.PC.json" style="display: none;">电子/电脑 CE.PC</option>
+                            <option data-region="na" value="CE.PC.json">电子/电脑 CE.PC</option>
+                            <option data-region="eu" value="CE.MiscAudioComponents.json" style="display: none;">电子/音频杂项 CE.MiscAudioComponents</option>
+                            <option data-region="na" value="CE.MiscAudioComponents.json">电子/音频杂项 CE.MiscAudioComponents</option>
+                            <option data-region="eu" value="CE.MediaStorage.json" style="display: none;">电子/媒体存储 CE.MediaStorage</option>
+                            <option data-region="na" value="CE.MediaStorage.json">电子/媒体存储 CE.MediaStorage</option>
+                            <option data-region="eu" value="CE.MediaPlayerOrEReaderAccessory.json" style="display: none;">电子/媒体播放器和电子阅读器周边 CE.MediaPlayerOrEReaderAccessory</option>
+                            <option data-region="na" value="CE.MediaPlayerOrEReaderAccessory.json">电子/媒体播放器和电子阅读器周边 CE.MediaPlayerOrEReaderAccessory</option>
+                            <option data-region="eu" value="CE.MediaPlayer.json" style="display: none;">电子/媒体播放器 CE.MediaPlayer</option>
+                            <option data-region="na" value="CE.MediaPlayer.json">电子/媒体播放器 CE.MediaPlayer</option>
+                            <option data-region="eu" value="CE.KindleFireAccessories.json" style="display: none;">电子/Kindle制作周边 CE.KindleFireAccessories</option>
+                            <option data-region="na" value="CE.KindleFireAccessories.json">电子/Kindle制作周边 CE.KindleFireAccessories</option>
+                            <option data-region="eu" value="CE.KindleEReaderAccessories.json" style="display: none;">电子/Kindle电子阅读周边 CE.KindleEReaderAccessories</option>
+                            <option data-region="na" value="CE.KindleEReaderAccessories.json">电子/Kindle电子阅读周边 CE.KindleEReaderAccessories</option>
+                            <option data-region="eu" value="CE.KindleAccessories.json" style="display: none;">电子/Kindle周边 CE.KindleAccessories</option>
+                            <option data-region="na" value="CE.KindleAccessories.json">电子/Kindle周边 CE.KindleAccessories</option>
+                            <option data-region="eu" value="CE.HomeTheaterSystemOrHTIB.json" style="display: none;">电子/家庭影院 CE.HomeTheaterSystemOrHTIB</option>
+                            <option data-region="na" value="CE.HomeTheaterSystemOrHTIB.json">电子/家庭影院 CE.HomeTheaterSystemOrHTIB</option>
+                            <option data-region="eu" value="CE.Headphones.json" style="display: none;">电子/手机 CE.Headphones</option>
+                            <option data-region="na" value="CE.Headphones.json">电子/手机 CE.Headphones</option>
+                            <option data-region="eu" value="CE.HandheldOrPDA.json" style="display: none;">电子/掌上电脑 CE.HandheldOrPDA</option>
+                            <option data-region="na" value="CE.HandheldOrPDA.json">电子/掌上电脑 CE.HandheldOrPDA</option>
+                            <option data-region="eu" value="CE.GPSOrNavigationSystem.json" style="display: none;">电子/GPS导航系统 CE.GPSOrNavigationSystem</option>
+                            <option data-region="na" value="CE.GPSOrNavigationSystem.json">电子/GPS导航系统 CE.GPSOrNavigationSystem</option>
+                            <option data-region="eu" value="CE.GPSOrNavigationAccessory.json" style="display: none;">电子/GPS导航周边 CE.GPSOrNavigationAccessory</option>
+                            <option data-region="na" value="CE.GPSOrNavigationAccessory.json">电子/GPS导航周边 CE.GPSOrNavigationAccessory</option>
+                            <option data-region="eu" value="CE.DVDPlayerOrRecorder.json" style="display: none;">电子/DVD播放录影 CE.DVDPlayerOrRecorder</option>
+                            <option data-region="na" value="CE.DVDPlayerOrRecorder.json">电子/DVD播放录影 CE.DVDPlayerOrRecorder</option>
+                            <option data-region="eu" value="CE.DigitalVideoRecorder.json" style="display: none;">电子/数字录像机 CE.DigitalVideoRecorder</option>
+                            <option data-region="na" value="CE.DigitalVideoRecorder.json">电子/数字录像机 CE.DigitalVideoRecorder</option>
+                            <option data-region="eu" value="CE.DigitalPictureFrame.json" style="display: none;">电子/数字相框 CE.DigitalPictureFrame</option>
+                            <option data-region="na" value="CE.DigitalPictureFrame.json">电子/数字相框 CE.DigitalPictureFrame</option>
+                            <option data-region="eu" value="CE.ConsumerElectronics.json" style="display: none;">电子/消费电子 CE.ConsumerElectronics</option>
+                            <option data-region="na" value="CE.ConsumerElectronics.json">电子/消费电子 CE.ConsumerElectronics</option>
+                            <option data-region="eu" value="CE.CEVideoProjector.json" style="display: none;">电子/视频投影仪 CE.CEVideoProjector</option>
+                            <option data-region="na" value="CE.CEVideoProjector.json">电子/视频投影仪 CE.CEVideoProjector</option>
+                            <option data-region="eu" value="CE.CETelescope.json" style="display: none;">电子/单筒望远镜 CE.CETelescope</option>
+                            <option data-region="na" value="CE.CETelescope.json">电子/单筒望远镜 CE.CETelescope</option>
+                            <option data-region="eu" value="CE.CEFilmCamera.json" style="display: none;">电子/电影摄像机 CE.CEFilmCamera</option>
+                            <option data-region="na" value="CE.CEFilmCamera.json">电子/电影摄像机 CE.CEFilmCamera</option>
+                            <option data-region="eu" value="CE.CEDigitalCamera.json" style="display: none;">电子/数码相机 CE.CEDigitalCamera</option>
+                            <option data-region="na" value="CE.CEDigitalCamera.json">电子/数码相机 CE.CEDigitalCamera</option>
+                            <option data-region="eu" value="CE.CECameraFlash.json" style="display: none;">电子/相机闪存 CE.CECameraFlash</option>
+                            <option data-region="na" value="CE.CECameraFlash.json">电子/相机闪存 CE.CECameraFlash</option>
+                            <option data-region="eu" value="CE.CECamcorder.json" style="display: none;">电子/摄像机 CE.CECamcorder</option>
+                            <option data-region="na" value="CE.CECamcorder.json">电子/摄像机 CE.CECamcorder</option>
+                            <option data-region="eu" value="CE.CEBlankMedia.json" style="display: none;">电子/空白媒介 CE.CEBlankMedia</option>
+                            <option data-region="na" value="CE.CEBlankMedia.json">电子/空白媒介 CE.CEBlankMedia</option>
+                            <option data-region="eu" value="CE.CEBinocular.json" style="display: none;">电子/双筒望远镜 CE.CEBinocular</option>
+                            <option data-region="na" value="CE.CEBinocular.json">电子/双筒望远镜 CE.CEBinocular</option>
+                            <option data-region="eu" value="CE.CEBattery.json" style="display: none;">电子/电池 CE.CEBattery</option>
+                            <option data-region="na" value="CE.CEBattery.json">电子/电池 CE.CEBattery</option>
+                            <option data-region="na" value="CE.CarElectronics.json">电子/车载电子 CE.CarElectronics</option>
+                            <option data-region="eu" value="CE.CarElectronics.json" style="display: none;">电子/车载电子 CE.CarElectronics</option>
+                            <option data-region="eu" value="CE.CarAudioOrTheater.json" style="display: none;">电子/汽车多媒体 CE.CarAudioOrTheater</option>
+                            <option data-region="na" value="CE.CarAudioOrTheater.json">电子/汽车多媒体 CE.CarAudioOrTheater</option>
+                            <option data-region="eu" value="CE.CarAlarm.json" style="display: none;">电子/汽车报警 CE.CarAlarm</option>
+                            <option data-region="na" value="CE.CarAlarm.json">电子/汽车报警 CE.CarAlarm</option>
+                            <option data-region="eu" value="CE.CameraPowerSupply.json" style="display: none;">电子/相机电源 CE.CameraPowerSupply</option>
+                            <option data-region="na" value="CE.CameraPowerSupply.json">电子/相机电源 CE.CameraPowerSupply</option>
+                            <option data-region="eu" value="CE.CameraOtherAccessories.json" style="display: none;">电子/相机周边 CE.CameraOtherAccessories</option>
+                            <option data-region="na" value="CE.CameraOtherAccessories.json">电子/相机周边 CE.CameraOtherAccessories</option>
+                            <option data-region="eu" value="CE.CameraLenses.json" style="display: none;">电子/相机镜头 CE.CameraLenses</option>
+                            <option data-region="na" value="CE.CameraLenses.json">电子/相机镜头 CE.CameraLenses</option>
+                            <option data-region="eu" value="CE.CameraBagsAndCases.json" style="display: none;">电子/相机包等 CE.CameraBagsAndCases</option>
+                            <option data-region="na" value="CE.CameraBagsAndCases.json">电子/相机包等 CE.CameraBagsAndCases</option>
+                            <option data-region="eu" value="CE.CableOrAdapter.json" style="display: none;">电子/电缆|适配器 CE.CableOrAdapter</option>
+                            <option data-region="na" value="CE.CableOrAdapter.json">电子/电缆|适配器 CE.CableOrAdapter</option>
+                            <option data-region="eu" value="CE.BarCodeReader.json" style="display: none;">电子/读码设备 CE.BarCodeReader</option>
+                            <option data-region="na" value="CE.BarCodeReader.json">电子/读码设备 CE.BarCodeReader</option>
+                            <option data-region="eu" value="CE.AVFurniture.json" style="display: none;">电子/音视频装备 CE.AVFurniture</option>
+                            <option data-region="na" value="CE.AVFurniture.json">电子/音视频装备 CE.AVFurniture</option>
+                            <option data-region="na" value="CE.AudioVideoAccessory.json">电子/音视频配件 CE.AudioVideoAccessory</option>
+                            <option data-region="eu" value="CE.AudioVideoAccessory.json" style="display: none;">电子/音视频配件 CE.AudioVideoAccessory</option>
+                            <option data-region="eu" value="CE.Antenna.json" style="display: none;">电子/天线 CE.Antenna</option>
+                            <option data-region="na" value="CE.Antenna.json">电子/天线 CE.Antenna</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <h4>分类属性</h4>
+                </div>
+                <div class="pro_inf">
+
+                    <!--<span v-for='item in shuxing'>-->
+                        <!--<label for="">部门：<br>DEPARTMENT</label><input type="text" placeholder="部门">-->
+                    <!--</span>-->
+                </div>
+            </div>
+        </div>
+        
+        <!--分类弹框-->
+        <div id="fenleiTankuang" style="">
+            <div class="con">
+
+            </div>
+
+        </div>
+
+        <div class="fenleiCon">
+            <div class="some-content-related-div" style="width: 100%;margin: 0 auto;">
+                <div class="inner-content-div2">
+                    <!--要加滚动条的具体内容-->
+                    <ul>
+                        <li v-for='item in leven1' :id="item.id">{{ item.value }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+    <script src="${request.contextPath}/statics/kuajing/js/step/product/addUpload.js"></script>
+    <script src="${request.contextPath}/statics/kuajing/js/step/product/sousuoArea.js"></script>
+</div>
+</body>
+</html>

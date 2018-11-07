@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平台授权</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/authorize/authorize.css" media="all">
+</head>
+<body>
+
+<div class="box" id="step">
+
+    <p>
+        <span class="layui-breadcrumb" style="visibility: visible;">
+          <a href="javascript:;">授权列表</a>
+        </span>
+
+        <button class="save">添加授权</button>
+    </p>
+
+    <table>
+        <tr>
+            <th>店铺名称</th>
+            <th>账户</th>
+            <th>授权国家</th>
+            <th>授权时间</th>
+            <th>操作</th>
+        </tr>
+        <tr v-for="item in authorizeList">
+            <td>{{ item.shopName }}</td>
+            <td>{{ item.account }}</td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.date }}</td>
+            <td>
+                <a href="javascript:;">添加授权令牌</a>
+                <a href="javascript:;">删除</a>
+                <a href="javascript:;">国家列表</a>
+            </td>
+        </tr>
+    </table>
+
+    <!--分页-->
+    <div id="page" style="text-align: center"></div>
+</div>
+
+<script src="${request.contextPath}/statics/kuajing/js/step/authorize/authorize.js"></script>
+</body>
+</html>

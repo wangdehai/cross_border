@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/product/detailsProduct.css" media="all">
+    <style>
+        .form_item{
+            box-shadow: 0 0 0 transparent!important;
+        }
+        h3{
+            margin: 10px;
+            color: #00a3e8;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<form style="padding: 0;">
+    <h3>批量修改</h3>
+    <div class="some-content-related-div" style="width: 100%;margin: 0 auto;">
+        <div class="inner-content-div2">
+            <!--要加滚动条的具体内容-->
+            <div class="form_item">
+                <div class="item">
+                    <div>
+                        <h4>审核状态</h4>
+                    </div>
+                    <div>
+                        <input type="radio" class="rdo" name="sex" checked style="">
+                        <label class="rdo-text">通过</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">待审核</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">失效</label>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h4>上下架</h4>
+                    </div>
+                    <div>
+                        <input type="radio" class="rdo" name="sex" checked style="">
+                        <label class="rdo-text">上架</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">下架</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">过滤</label>
+                        <input type="radio" class="rdo" name="sex" style="">
+                        <label class="rdo-text">侵权</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">屏蔽</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h4>产品类型</h4>
+                    </div>
+                    <div>
+                        <input type="radio" class="rdo" name="sex" checked style="">
+                        <label class="rdo-text">重点</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">原创</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">海外</label>
+                        <input type="radio" class="rdo" name="sex" style="">
+                        <label class="rdo-text">抓取</label>
+                        <input type="radio" class="rdo" name="sex">
+                        <label class="rdo-text">其他</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form_item">
+                <div class="item">
+                    <div>
+                        <h4>产品分类</h4>
+                    </div>
+                    <div>
+                        <input type="text" class="sousuoAreaInput" placeholder="产品分类">
+                        <div class="sousuoArea">
+                            <div class="areaOne">
+                                <ul>
+                                    <li>家用电器<span>（{{  }}）</span></li>
+                                    <li>服装，鞋靴，箱包<span>（{{  }}）</span></li>
+                                    <li>美妆，个护健康<span>（{{  }}）</span></li>
+                                    <li>图书<span>（{{  }}）</span></li>
+                                    <li>玩具，母婴，家庭会员<span>（{{  }}）</span></li>
+                                    <li>食品，酒水，生鲜<span>（{{  }}）</span></li>
+                                    <li>游戏，影视，乐器<span>（{{  }}）</span></li>
+                                    <li>亚马逊Drive<span>（{{  }}）</span></li>
+                                    <li>手机，摄影，数码<span>（{{  }}）</span></li>
+                                    <li>Kindle商店<span>（{{  }}）</span></li>
+                                    <li>电脑，办公<span>（{{  }}）</span></li>
+                                    <li>钟表，首饰<span>（{{  }}）</span></li>
+                                    <li>Fire平板电脑<span>（{{  }}）</span></li>
+                                    <li>运动户外，汽车用品<span>（{{  }}）</span></li>
+                                    <li>家居，厨具，家装<span>（{{  }}）</span></li>
+                                    <li>亚马逊海外购<span>（{{  }}）</span></li>
+                                    <li>电子配件，智能生活<span>（{{  }}）</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form_item">
+                <div class="item">
+                    <div>
+                        <h4>产品信息</h4>
+                    </div>
+                    <div class="pro_inf">
+                        <span><label for="">厂家：</label><input type="text" placeholder="建议填写"></span>
+                        <span><label for="">厂家编号：</label><input type="text" placeholder="建议填写"></span><br>
+                        <span><label for="">品牌：</label><input type="text" placeholder="建议填写"></span>
+                        <span><label for="">重量（kg）：</label><input type="text" placeholder="建议填写"></span><br>
+                        <span><label for="">尺寸（cm）：</label>
+                            <input class="size_input" type="text" placeholder="长（cm）"> *
+                            <input class="size_input" type="text" placeholder="宽（cm）"> *
+                            <input class="size_input" type="text" placeholder="高（cm）">
+                        </span><br>
+                        <span><label for="">标题前加：</label><input type="text" placeholder="建议填写"></span>
+                        <span><label for="">标题后加：</label><input type="text" placeholder="建议填写"></span><br>
+                        <span><label for="">买<i style="color: transparent;">大家</i>点：</label><textarea placeholder="买点"></textarea><br><input type="checkbox" style="margin-left: 83px"> 追加</span><br>
+                        <span><label for="" style="display: inline-block;width: 78px">关 键 词：</label><textarea placeholder="关键词"></textarea><br><input type="checkbox" style="margin-left: 83px"> 追加</span><br>
+                        <span><label for="">描述前加：</label><textarea placeholder="描述前加"></textarea></span><br>
+                        <span><label for="">描述后加：</label><textarea placeholder="描述后加"></textarea></span><br>
+
+                        <span><input type="checkbox"> 中文</span>
+                        <i class="layui-icon layui-icon-spread-left" style="margin-right: 10px;color: #00a3e8"></i>
+                        <span><input type="checkbox"> 英语</span>
+                        <span><input type="checkbox"> 法语</span>
+                        <span><input type="checkbox"> 意大利语</span>
+                        <span><input type="checkbox"> 西班牙语</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<script src="${request.contextPath}/statics/kuajing/js/step/product/detailsProduct.js"></script>
+<script>
+    $(function () {
+        $('.inner-content-div2').slimScroll({
+            height: '400px' //设置显示的高度
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的产品</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/product/myProduct.css" media="all">
+    <style>
+        .layui-col-md3{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="step">
+    <!--搜索区域-->
+    <div class="search1">
+        <input type="text" class="sousuoAreaInput" placeholder="产品类目">
+        <div class="sousuoArea">
+            <div class="areaOne">
+                <ul>
+                    <li>家用电器<span>（{{  }}）</span></li>
+                    <li>服装，鞋靴，箱包<span>（{{  }}）</span></li>
+                    <li>美妆，个护健康<span>（{{  }}）</span></li>
+                    <li>图书<span>（{{  }}）</span></li>
+                    <li>玩具，母婴，家庭会员<span>（{{  }}）</span></li>
+                    <li>食品，酒水，生鲜<span>（{{  }}）</span></li>
+                    <li>游戏，影视，乐器<span>（{{  }}）</span></li>
+                    <li>亚马逊Drive<span>（{{  }}）</span></li>
+                    <li>手机，摄影，数码<span>（{{  }}）</span></li>
+                    <li>Kindle商店<span>（{{  }}）</span></li>
+                    <li>电脑，办公<span>（{{  }}）</span></li>
+                    <li>钟表，首饰<span>（{{  }}）</span></li>
+                    <li>Fire平板电脑<span>（{{  }}）</span></li>
+                    <li>运动户外，汽车用品<span>（{{  }}）</span></li>
+                    <li>家居，厨具，家装<span>（{{  }}）</span></li>
+                    <li>亚马逊海外购<span>（{{  }}）</span></li>
+                    <li>电子配件，智能生活<span>（{{  }}）</span></li>
+                </ul>
+            </div>
+        </div>
+        <input type="text" placeholder="标题">
+        <input type="text" placeholder="SKU">
+        <div style="display: inline-block;">
+            <el-date-picker
+                    v-model="value9"
+                    type="daterange"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    default-value="">
+            </el-date-picker>
+        </div>
+
+        <button class="sousuo">搜索</button>
+
+        <button class="create">原创产品</button>
+        <button class="create">采集产品</button>
+
+    </div>
+    <!--筛选区域-->
+    <div class="screen">
+        <div class="audit">
+            <span>审核状态</span>
+            <ul>
+                <li class="action">全部<span>（{{ screenData.auditAll }}）</span></li>
+                <li>通过<span>（{{ screenData.auditAll }}）</span></li>
+                <li>待审核<span>（{{ screenData.auditAll }}）</span></li>
+                <li>失败<span>（{{ screenData.auditAll }}）</span></li>
+            </ul>
+        </div>
+        <div class="shelve">
+            <span>上架状态</span>
+            <ul>
+                <li class="action">全部<span>（{{ screenData.shelveAll }}）</span></li>
+                <li>上架<span>（{{ screenData.auditAll }}）</span></li>
+                <li>下架<span>（{{ screenData.auditAll }}）</span></li>
+                <li>过滤<span>（{{ screenData.auditAll }}）</span></li>
+                <li>侵权<span>（{{ screenData.auditAll }}）</span></li>
+                <li>屏蔽<span>（{{ screenData.auditAll }}）</span></li>
+            </ul>
+        </div>
+        <div class="type">
+            <span>产品类型</span>
+            <ul>
+                <li class="action">全部<span>（{{ screenData.typeAll }}）</span></li>
+                <li>重点<span>（{{ screenData.auditAll }}）</span></li>
+                <li>原创<span>（{{ screenData.auditAll }}）</span></li>
+                <li>海外<span>（{{ screenData.auditAll }}）</span></li>
+                <li>抓取<span>（{{ screenData.auditAll }}）</span></li>
+                <li>产品库<span>（{{ screenData.auditAll }}）</span></li>
+                <li>其他<span>（{{ screenData.auditAll }}）</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--操作区域-->
+    <div class="operation">
+        <label class="radiobox" data-checked = 'true'><span></span>&nbsp;&nbsp;&nbsp;&nbsp;全选</label>
+        <button class="del">删除</button>
+        <button>上架</button>
+        <button>下架</button>
+        <button>审核通过</button>
+        <button>待审核</button>
+        <button class="updata">批量修改</button>
+        <!--统计-->
+        <div class="statistics">
+            产品数量: <span>{{ statistics.proNum }}</span>
+            审核通过: <span>{{ statistics.via }}</span>
+            含变体产品数: <span>{{ statistics.variant }}</span>
+            变体总数: <span>{{ statistics.allVariant }}</span>
+
+        </div>
+    </div>
+
+
+    <!--商品列表-->
+    <div class="pro_list" data-click="true">
+        <div v-for="item in proList" class="item">
+            <!--<img src="${request.contextPath}/statics/kuajing/img/img1.jpg">-->
+            <img :src="item.imgurl">
+            <h3><a href="detailsProduct.html">{{ item.dec }}</a></h3>
+            <div class="footer">
+                <p>时间：{{ item.date }}</p>
+                <p>编号：{{ item.num }}</p>
+            </div>
+            <span class="price">￥<span>{{ item.price }}</span></span>
+        </div>
+        <!-- 鼠标拖拽出的遮罩 （定位为 position:absolute）-->
+        <!-- 遮罩最好是在绑定了mouseover事件的元素内部，并且不要阻止遮罩的冒泡事件。这样鼠标移到了遮罩上面，依然可以利用冒泡执行父元素的mouseover事件，就不会出现遮罩只能扩大，不能缩小的情况了（亲自试过） -->
+        <!--<div id="moveSelected"></div>-->
+
+
+
+    </div>
+    <!--分页-->
+    <div id="page" style="text-align: center"></div>
+
+
+</div>
+
+<script src="${request.contextPath}/statics/kuajing/js/step/product/myProduct.js"></script>
+<script src="${request.contextPath}/statics/kuajing/js/step/product/sousuoArea.js"></script>
+<!--<script src="${request.contextPath}/statics/kuajing/js/step/product/tuozhaiduoxuan.js"></script>-->
+</body>
+</html>

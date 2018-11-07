@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/order/orderDetails.css" media="all">
+    <style>
+        .layui-col-md3{
+            width: 20%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box" id="step">
+
+    <form>
+        <p>
+            <span class="layui-breadcrumb" style="visibility: visible;">
+              <a href="javascript:window.location.href = document.referrer;">订单列表 / </a>
+              <a><cite>订单详情</cite></a>
+            </span>
+
+            <!--<button class="save">保存并提交</button>-->
+        </p>
+
+        <div class="form_item one">
+            <div class="item">
+                <div>
+                    <img :src="orderDetails.imgUrl" alt="">
+                </div>
+                <div>
+                    <h4>{{ orderDetails.shop }}</h4>
+                    <p>{{ orderDetails.dec }}</p>
+                    <span><label for="">SKU：</label><span>{{ orderDetails.sku }}</span></span>
+                    <span><label for="">ASIN：</label><span>{{ orderDetails.asin }}</span></span>
+                    <span><label for="">数量：</label><span>{{ orderDetails.num }}</span></span>
+                    <span><label for="">采购价（￥）：</label><span>{{ orderDetails.price }}</span></span>
+                    <span><label for="">销售单号：</label><span>{{ orderDetails.xiaoshouNum }}</span></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>寄件信息</h4>
+                </div>
+                <div class="pro_inf okEdit">
+                    <span><label for="">收件人：</label><input type="text" placeholder="建议填写"></span>
+                    <span><label for="">TEL：</label><input type="text" placeholder="建议填写"></span>
+                    <span><label for="">ZIP：</label><input type="text" placeholder="建议填写"></span><br>
+                    <span><label for="">收件人国家：</label><input type="text" placeholder="建议填写"></span>
+                    <span><label for="">州：</label><input type="text" placeholder="建议填写"></span>
+                    <span><label for="">街道：</label><input type="text" placeholder="建议填写"></span><br>
+                    <span><label for="">详细地址：</label><textarea>建议填写</textarea></span>
+                    <div class="fr" style="margin-top: -85px">
+                        <input class="edit" type="button" value="编辑">
+                        <input class="noedit" type="button" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>国内物流</h4>
+                </div>
+                <div class="pro_inf chengben okEdit">
+                    <p style="margin-bottom: 10px"><input class="addguojiyundan" type="button" value="添加"></p>
+                    <span><label for="">采购价(￥)：</label><input type="text" placeholder="建议填写"></span>
+                    <span><label for="">物流单号(￥)：</label><a href="javascript:;" data-ok="true" class="logistics" ><input class="" type="text" placeholder="建议填写" value="12213234"></a></span>
+                    <span><label for="">发货日期(￥)：</label><input type="text" placeholder="建议填写"></span>
+                    <div class="fr" style="">
+                        <input class="edit" type="button" value="编辑">
+                        <input class="noedit" type="button" value="取消">
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="item">
+                <div>
+                    <h4>国际物流</h4>
+                </div>
+                <div class="pro_inf chengben">
+                    <p style="margin-bottom: 10px"><input class="addguojiyundan" type="button" value="添加"></p>
+                    <span><label for="">运单号：</label><span>{{ intLog.num }}</span></span>
+                    <span><label for="">跟踪号：</label><span>{{ intLog.num1 }}</span></span>
+                    <span><label for="">线路：</label><span>{{ intLog.circuit }}</span></span>
+                    <span><label for="">发货日期：</label><span>{{ intLog.date }}</span></span>
+                    <div class="fr">
+                        <span>2018/10/24</span>
+                        <p>
+                            <a href="javascript:;">作废</a>
+                            <a href="javascript:;">打印</a>
+                            <a href="javascript:;" class="detailsOrderA">明细</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form_item">
+            <div class="item">
+                <div>
+                    <h4>订单明细</h4>
+                </div>
+                <div class="details">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>订单金额 <span>（汇率 {{ orderDetails.orderdetails.rate }}）</span></th>
+                            <th>Amazon佣金</th>
+                            <th>到账金额</th>
+                            <th>国际运费</th>
+                            <th>平台佣金</th>
+                            <th>利润</th>
+                            <th>退货费用</th>
+                            <th>协商费用</th>
+                            <th>补发费用</th>
+                            <th>总费用</th>
+                        </tr>
+                        <tr>
+                            <th>人民币</th>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                        </tr>
+                        <tr class="two">
+                            <th>国际币种</th>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                            <td>{{ orderDetails.orderdetails.price }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form_item">
+
+            <div class="item">
+                <div>
+                    <h4></h4>
+                </div>
+                <div class="pro_inf chengben">
+                    <div class="layui-tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">内部备注</li>
+                            <li>操作日志</li>
+                        </ul>
+                        <div class="layui-tab-content action">
+                            <ul>
+                                <li v-for="item in remark"><span>{{ item.title }}</span><span>{{ item.con }}</span></li>
+                            </ul>
+                            <textarea placeholder="留言备注" style="margin-bottom: 10px"></textarea>
+                            <br>
+                            <select id="remark_type" name="remark_type" class="form-control">
+                                <option value="1" selected="selected">内部备注</option>
+                                <option value="addr">收件人地址异常</option>
+                                <option value="purchase">采购异常</option>
+                                <option value="express">国内快递异常</option>
+                                <option value="waybill">国际物流异常</option>
+                            </select>
+                            <input type="button" value="添加备注说明">
+                        </div>
+                        <div class="layui-tab-content">
+                            <ul class="operationLog">
+                                <li v-for="item in operationLog"><span>{{ item.date }}</span><span>{{ item.con }}</span></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="logisticsDiv">
+            <span class="jiantou"></span>
+            <div>
+                <p>
+                    <span>{{ logistics.express }}</span>:
+                    <span>{{ logistics.expressNum }}</span>
+                </p>
+                <ul>
+                    <li v-for="item in logistics.logisticsInf">
+                        <p>{{ item.con }}</p>
+                        <span>{{ item.date }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!--国际运单添加-->
+        <div class="addorder" id="addorder" style="display: none">
+            <h3>国际运单</h3>
+            <div class="some-content-related-div" style="width: 100%;margin: 0 auto;">
+                <div class="inner-content-div2">
+                    <!--要加滚动条的具体内容-->
+                    <div class="form_item one" style="box-shadow: 0 0 0 transparent">
+                        <div class="item">
+                            <div>
+                                <img :src="orderDetails.imgUrl" alt="">
+                            </div>
+                            <div>
+                                <p class="addDecP">{{ orderDetails.dec }}</p>
+                                <span><label for="">SKU：</label><span>{{ orderDetails.sku }}</span></span><br>
+                                <span><label for="">数量：</label><span>{{ orderDetails.num }}</span></span><br>
+                                <span><label for="">运输数量：</label>
+                            <select name="" id="" :value="orderDetails.value">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <h4>运单信息</h4>
+                            </div>
+                            <div class="pro_inf">
+                                <span><label for="">中文：</label><input type="text" placeholder="中文"></span>
+                                <span><label for="">英文：</label><input type="text" placeholder="英文"></span><br>
+                                <span><label for="">重量（kg）：</label><input type="text" placeholder="重量（kg）"></span>
+                                <span style="width: 370px"><label for="">体积（cm）：</label>
+                                    <input class="size_input" type="text" placeholder="长（CM）"> *
+                                    <input class="size_input" type="text" placeholder="宽（CM）"> *
+                                    <input class="size_input" type="text" placeholder="高（CM）">
+                                </span><br>
+                                <span style="width: auto"><label for="">物流：</label>
+                                    <select name="" :value="orderDetails.logisticsValue">
+                                        <option value="0">--选择--</option>
+                                        <option value="1">大包</option>
+                                        <option value="2">小包</option>
+                                    </select>
+                                    <select name="">
+                                        <option value="0">--选择--</option>
+                                        <option v-for="item in guojilogistics" :value="item.value">{{ item.name }}</option>
+                                    </select>
+                                </span>
+                                <input type="button" value="生成运单号"><br>
+                                <span><label for="">运单号：</label><input type="text" placeholder="运单号" :value="addyundanhao" disabled></span>
+                                <span><label for="">追踪号：</label><input type="text" placeholder="追踪号" :value="addzhuizonghao" disabled></span>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--国际运单明细-->
+        <div class="addorder" id="detailsorder" style="display: none">
+            <h3>国际运单</h3>
+            <div class="some-content-related-div" style="width: 100%;margin: 0 auto;">
+                <div class="inner-content-div2">
+                    <!--要加滚动条的具体内容-->
+                    <div class="form_item one" style="box-shadow: 0 0 0 transparent;margin: 0">
+                        <div class="item">
+                            <div>
+                                <img :src="orderDetails.imgUrl" alt="">
+                            </div>
+                            <div>
+                                <p class="addDecP">{{ orderDetails.dec }}</p>
+                                <span><label for="">SKU：</label><span>{{ orderDetails.sku }}</span></span><br>
+                                <span><label for="">数量：</label><span>{{ orderDetails.num }}</span></span><br>
+                                <span><label for="">运输数量：</label>
+                            <select name="" id="" :value="orderDetails.value">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div>
+                                <h4>运单信息</h4>
+                            </div>
+                            <div class="pro_inf">
+                                <span><label for="">运单状态：</label><span style="color: #00a3e8"> {{ orderDetails.state }} </span></span><br>
+                                <span><label for="">中文：</label><input type="text" placeholder="中文"></span>
+                                <span><label for="">英文：</label><input type="text" placeholder="英文"></span><br>
+                                <span><label for="">重量（kg）：</label><input type="text" placeholder="重量（kg）"></span>
+                                <span style="width: 370px"><label for="">体积（cm）：</label>
+                                    <input class="size_input" type="text" placeholder="长（CM）"> *
+                                    <input class="size_input" type="text" placeholder="宽（CM）"> *
+                                    <input class="size_input" type="text" placeholder="高（CM）">
+                                </span><br>
+                                <span style="width: auto"><label for="">物流：</label>
+                                    <select name="" :value="orderDetails.logisticsValue">
+                                        <option value="0">--选择--</option>
+                                        <option value="1">大包</option>
+                                        <option value="2">小包</option>
+                                    </select>
+                                    <select name="">
+                                        <option value="0">--选择--</option>
+                                        <option v-for="item in guojilogistics" :value="item.value">{{ item.name }}</option>
+                                    </select>
+                                </span>
+                                <input type="button" value="生成运单号"><br>
+                                <span><label for="">运单号：</label><input type="text" placeholder="运单号" :value="addyundanhao" disabled></span>
+                                <span><label for="">追踪号：</label><input type="text" placeholder="追踪号" :value="addzhuizonghao" disabled></span>
+                                <br>
+                                <span><label for="">备注信息：</label><textarea placeholder="备注"></textarea></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+
+</div>
+
+
+
+<script src="${request.contextPath}/statics/kuajing/js/step/order/orderDetails.js"></script>
+
+</body>
+</html>

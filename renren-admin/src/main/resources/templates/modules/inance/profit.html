@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/inance/profit.css" media="all">
+</head>
+<body>
+
+<div class="box" id="step">
+    <div class="item">
+        <h4>总部员工</h4>
+        <div class="nav_title">
+            <ul>
+                <li class="action">年统计</li>
+                <li>月统计</li>
+                <li>日统计</li>
+            </ul>
+            <select name="" id="">
+                <option value="0">全部</option>
+                <option v-for="item in staff" :value="item.value">{{ item.name }}</option>
+            </select>
+        </div>
+        <!--统计-->
+        <div class="statistics">
+            <span>{{ statistics.name }}</span>
+            <span>新增产品数：<span>{{ statistics.proNum }}</span></span>
+            <span>订单数：<span>{{ statistics.orderNum }}</span></span>
+            <span>退货情况：<span>{{ statistics.return }}</span></span>
+            <span>销售额：<span>{{ statistics.sales }}</span></span>
+            <span>成本：<span>{{ statistics.cost }}</span></span>
+            <span>利润：<span>{{ statistics.profit }}</span></span>
+            <span>平均利润率：<span>{{ statistics.aveProfit }}</span></span>
+        </div>
+        <!--统计图-->
+        <div class="chart">
+            <div>
+                <div id="allChart1"></div>
+            </div>
+            <div>
+                <div id="allChart2"></div>
+            </div>
+            <div>
+                <div id="allChart3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h4>加盟商</h4>
+        <div class="nav_title">
+            <ul>
+                <li class="action">年统计</li>
+                <li>月统计</li>
+                <li>日统计</li>
+            </ul>
+            <select name="" id="">
+                <option value="0">全部</option>
+                <option v-for="item in shop" :value="item.value">{{ item.name }}</option>
+            </select>
+        </div>
+        <!--统计-->
+        <div class="statistics">
+            <span>{{ statisticsShop.name }}</span>
+            <span>订单数：<span>{{ statisticsShop.orderNum }}</span></span>
+            <span>销售额：<span>{{ statisticsShop.sales }}</span></span>
+            <span>成本：<span>{{ statisticsShop.cost }}</span></span>
+            <span>利润：<span>{{ statisticsShop.profit }}</span></span>
+            <span>平均利润率：<span>{{ statisticsShop.aveProfit }}</span></span>
+        </div>
+        <!--统计图-->
+        <div class="chart chart1">
+            <div>
+                <div id="shopChart1"></div>
+            </div>
+            <div>
+                <div id="shopChart2"></div>
+            </div>
+            <div>
+                <div id="shopChart3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h4>平台利润</h4>
+        <div class="nav_title">
+            <ul>
+                <li class="action">年统计</li>
+                <li>月统计</li>
+                <li>日统计</li>
+            </ul>
+
+        </div>
+        <!--统计-->
+        <div class="statistics">
+            <span>所有加盟商订单抽成：<span>{{ statisticsProfit.percentage }}</span></span>
+            <span>总部员工销售利润：<span>{{ statisticsProfit.profit }}</span></span>
+            <span>总盈利：<span>{{ statisticsProfit.allProfit }}</span></span>
+        </div>
+        <!--统计图-->
+        <div class="chart chart1">
+            <div>
+                <div id="shopChart1"></div>
+            </div>
+            <div>
+                <div id="shopChart2"></div>
+            </div>
+            <div>
+                <div id="shopChart3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/libs/echarts/1.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/2.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/3.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/4.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/5.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/6.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/7.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/8.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/9.js"></script>
+<script src="${request.contextPath}/statics/libs/echarts/10.js"></script>
+<script src="${request.contextPath}/statics/kuajing/js/step/inance/chart.js"></script>
+<script src="${request.contextPath}/statics/kuajing/js/step/inance/profit.js"></script>
+</body>
+</html>

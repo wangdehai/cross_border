@@ -1,0 +1,254 @@
+form{
+    padding-top: 25px;
+}
+form>p{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 10px 15px;
+    width: 100%;
+    overflow: hidden;
+    background: #f2f2f2;
+    z-index: 2;
+}
+button.save{
+    float: right;
+    margin-right: 20px;
+}
+
+form .form_item{
+    margin: 10px 0;
+    border-radius: 5px;
+    background: rgba(255,255,255,.8);
+    box-shadow: 0 0 5px #eee;
+    padding: 10px;
+}
+form .item{
+    margin: 20px 0;
+    display: flex;
+    line-height: 28px;
+}
+form .item>div:nth-child(1){
+    width: 110px;
+    padding-left: 10px;
+    /*text-align: center;*/
+}
+form .item>div:nth-child(1) h4{
+    font-weight: bold;
+}
+form .item>div:nth-child(2){
+    flex: 1;
+}
+form .item div:nth-child(2) .imgDiv{
+    overflow: hidden;
+}
+form .item div:nth-child(2) .imgDiv>div{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: #000;
+    border-radius: 3px;
+}
+form .item div:nth-child(2) .imgDiv img{
+    width: 130px;
+    border-radius: 3px;
+}
+form .item div:nth-child(2) .imgDiv>div i{
+    color: #00a3e8;
+    position: absolute;
+    top: calc(50% - 14px);
+    left: calc(50% - 9px);
+    font-size: 18px;
+    display: none;
+    cursor: pointer;
+}
+form button{
+     height: 28px;
+     padding: 0 15px;
+     border-radius: 14px;
+     border: 1.5px solid #f0f0f0;
+     background: url("../../img/create_bg.png");
+     background-size: 100% 100%;
+     color: #fff;
+     margin-right: 10px;
+     font-size: 13px;
+ }
+
+form .item>div:nth-child(2) input[type=button]{
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 14px;
+    color: #555;
+    border: 1.5px solid #00a3e8;
+    background: none;
+    margin-right: 10px;
+    font-size: 13px;
+}
+form .item>div:nth-child(2) input[type=button]:hover , form .item>div:nth-child(2) input[type=button]:active {
+    border: 1.5px solid #fff;
+    background: url("../../img/create_bg.png");
+    background-size: 100% 100%;
+    color: #fff;
+}
+form .item>div:nth-child(2) input[type=text] , form .item>div:nth-child(2) select , form .item>div:nth-child(2) textarea{
+    height: 28px;
+    border: 1px solid #d8dce5;
+    border-radius: 4px;
+    padding-left: 6px;
+    margin-right: 10px;
+}
+form .item>div:nth-child(2) textarea{
+    width: 409px;
+    height: 68px;
+    vertical-align: text-top;
+}
+form .pro_inf span{
+    display: inline-block;
+    margin: 0 10px 15px 0;
+}
+form .pro_inf label{
+    line-height: 28px;
+    color: #444;
+    padding-left: 5px;
+}
+form .pro_inf label:before{
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: -webkit-linear-gradient(bottom, #1e9fff , #63e3f0); /* Safari 5.1 - 6.0 *
+    background: -o-linear-gradient(right,  #29c5db , #63abf0); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom, #1e9fff , #63e3f0); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom,  #1e9fff , #63e3f0); /* 标准的语法 */
+    margin-right: 5px;
+}
+form .pro_inf .size_input{
+    width: 60px;
+}
+form .chengben label{
+    display: inline-block;
+    width: 108px;
+}
+
+/*单选框美化*/
+.rdo {
+    width: 0px;
+    margin-right: 25px;/*选项之间的距离*/
+    position: relative;
+}
+.rdo:before,.rdo:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%; /*圆角*/
+    transition: .4s ease; /*中点跳转的速度*/
+}
+.rdo:before {/*所有选项*/
+    width: 12px;
+    height: 12px; /*外圆的大小*/
+    background-color: none; /*圆环的颜色*/
+    border: 1px solid #888;/*外圆的边框*/
+}
+.rdo:after {/*未选中的中点*/
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: transparent; /*未选的中点的颜色*/
+}
+.rdo:checked:after {/*选中的中点*/
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color:#00a3e8; /*选中的中点*/
+}
+.rdo:checked:before {
+    border-color:#00a3e8; /*选中的外圆边框*/
+}
+.rdo-text{
+    display: inline-block;
+    width: 60px;
+    font-size: 14px;
+    position: relative;
+    /*top: 3px;*/
+    left: -6px;
+}
+
+
+/*搜索分类*/
+.sousuoAreaInput{
+    width: 500px;
+    /*padding: 6px;*/
+    /*border: 1px solid #aaa;*/
+    /*border-radius: 3px;*/
+}
+.sousuoArea{
+    position: absolute;
+    /*display: flex;*/
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    z-index: 1;
+}
+.sousuoArea>div{
+    flex: 1;
+    /*display: none;*/
+}
+
+.sousuoArea>div:nth-child(even){
+    background: #f0f0f0;
+}
+.sousuoArea>div ul{
+    margin: 0;
+    padding: 0;
+}
+.sousuoArea>div.areaOne ul li{
+    list-style: none;
+    padding: 5px;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+}
+.sousuoArea>div.areaOne ul li:hover{
+    background: #cbe7ef;
+    color: #2293b1;
+}
+.sousuoArea>div.areaTwo{
+    /*height: 364px;*/
+}
+.sousuoArea>div.areaTwo ul{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sousuoArea>div.areaTwo ul li{
+    flex: 1;
+    list-style: none;
+    color: #888;
+    font-size: 13px;
+}
+
+.form1 input[type=text]{
+    border: 0!important;
+    background: none;
+}
+.form1 textarea{
+    background: none;
+}
+
+
+/*产品回收站*/
+.tankuang ul li{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 20%;
+    padding: 5px;
+}
+.tankuang ul li img{
+    width: 100%;
+    border-radius: 3px;
+}

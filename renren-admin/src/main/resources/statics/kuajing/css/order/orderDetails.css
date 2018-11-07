@@ -1,0 +1,415 @@
+form{
+    padding-top: 25px;
+}
+form>p{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 10px 15px;
+    width: 100%;
+    overflow: hidden;
+    background: #f2f2f2;
+    z-index: 2;
+}
+button.save{
+    float: right;
+    margin-right: 20px;
+}
+
+form .form_item{
+    margin: 10px 0;
+    border-radius: 5px;
+    background: rgba(255,255,255,.8);
+    box-shadow: 0 0 5px #eee;
+    padding: 10px;
+}
+form .item{
+    margin: 20px 0;
+    display: flex;
+    line-height: 28px;
+}
+form .form_item.one .item>div:nth-child(1){
+    /*width: 130px;*/
+}
+form .form_item.one .item>div:nth-child(1) img{
+    width: 100%;
+    border-radius: 3px;
+}
+form .form_item.one .item>div:nth-child(2){
+    color: #777;
+    padding-left: 15px;
+}
+form .form_item.one .item>div:nth-child(2) h4{
+    color: #444;
+    font-weight: bold;
+    font-size: 16px;
+}
+form .form_item.one .item>div:nth-child(2) p{
+    color: #555;
+    margin-bottom: 10px;
+}
+form .form_item.one .item>div:nth-child(2)>span{
+    margin-right: 18px;
+    font-size: 13px;
+}
+
+
+
+form .item>div:nth-child(1){
+    width: 110px;
+    padding-left: 10px;
+    /*text-align: center;*/
+}
+form .item>div:nth-child(1) h4{
+    font-weight: bold;
+}
+form .item>div:nth-child(2){
+    flex: 1;
+    overflow: hidden;
+}
+form .item>div:nth-child(2) div.fr{
+    float: right;
+}
+form .item>div:nth-child(2) div.fr span{
+    margin-bottom: 0;
+    color: #666;
+    font-size: 13px;
+}
+form .item>div:nth-child(2) div.fr p{
+    display: inline-block;
+}
+form .item>div:nth-child(2) div.fr p a{
+    display: inline-block;
+    margin-left: 10px;
+    color: #00a3e8;
+
+}
+form button{
+     height: 28px;
+     padding: 0 15px;
+     border-radius: 14px;
+     color: #555;
+     border: 1.5px solid #00a3e8;
+     background: none;
+     margin-right: 10px;
+     font-size: 13px;
+ }
+
+form .item>div:nth-child(2) input[type=button]{
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 14px;
+    color: #555;
+    border: 1.5px solid #00a3e8;
+    background: none;
+    margin-right: 10px;
+    font-size: 13px;
+}
+form button:active , form .item>div:nth-child(2) input[type=button]:hover , form .item>div:nth-child(2) input[type=button]:active , form button:hover{
+    border: 1.5px solid #fff;
+    background: url("../../img/create_bg.png");
+    background-size: 100% 100%;
+    color: #fff;
+}
+form .item>div:nth-child(2) input[type=text] , form .item>div:nth-child(2) select , form .item>div:nth-child(2) textarea{
+    height: 28px;
+    border: 1px solid #d8dce5;
+    border-radius: 4px;
+    padding-left: 6px;
+    margin-right: 10px;
+}
+form .item>div:nth-child(2) textarea{
+    width: 409px;
+    height: 68px;
+    vertical-align: text-top;
+}
+
+form .pro_inf>span{
+    display: inline-block;
+    width: 300px;
+    margin: 0 20px 15px 0;
+}
+form div.addorder .pro_inf>span{
+    width: 270px;
+}
+
+form .pro_inf span span{
+    margin-bottom: 0;
+}
+form .pro_inf label{
+    display: inline-block;
+    /*width: 108px;*/
+    line-height: 28px;
+    color: #444;
+    padding-left: 5px;
+}
+form .pro_inf label:before{
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: -webkit-linear-gradient(bottom, #1e9fff , #63e3f0); /* Safari 5.1 - 6.0 *
+    background: -o-linear-gradient(right,  #29c5db , #63abf0); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom, #1e9fff , #63e3f0); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom,  #1e9fff , #63e3f0); /* 标准的语法 */
+    margin-right: 5px;
+}
+form .pro_inf .size_input{
+    width: 60px;
+}
+form .chengben label{
+    display: inline-block;
+}
+
+/*单选框美化*/
+.rdo {
+    width: 0px;
+    margin-right: 25px;/*选项之间的距离*/
+    position: relative;
+}
+.rdo:before,.rdo:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%; /*圆角*/
+    transition: .4s ease; /*中点跳转的速度*/
+}
+.rdo:before {/*所有选项*/
+    width: 12px;
+    height: 12px; /*外圆的大小*/
+    background-color: none; /*圆环的颜色*/
+    border: 1px solid #888;/*外圆的边框*/
+}
+.rdo:after {/*未选中的中点*/
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: transparent; /*未选的中点的颜色*/
+}
+.rdo:checked:after {/*选中的中点*/
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color:#00a3e8; /*选中的中点*/
+}
+.rdo:checked:before {
+    border-color:#00a3e8; /*选中的外圆边框*/
+}
+.rdo-text{
+    display: inline-block;
+    width: 60px;
+    font-size: 14px;
+    position: relative;
+    /*top: 3px;*/
+    left: -6px;
+}
+
+
+form .item>div:nth-child(2).okEdit input.noedit{
+    display: none;
+}
+form .item>div:nth-child(2).okEdit input[type=text]{
+    border: 1px solid transparent;
+    background: none;
+}
+form .item>div:nth-child(2).okEdit textarea{
+    background: none;
+}
+form .item>div:nth-child(2).okEdit input.edit{
+
+}
+
+/*订单明细*/
+form div.details table{
+    width: 100%;
+}
+form div.details table tr:nth-child(1) th{
+    color: #00a3e8;
+}
+form div.details table tr:nth-child(even){
+    background: rgba(200,200,200,.3);
+}
+form div.details table tr th span{
+    color: #666;
+    font-weight: normal;
+}
+form div.details table tr td{
+    text-align: center;
+    padding: 4px;
+}
+form div.details table tr.two th , form div.details table tr.two td{
+    color: #666;
+}
+
+.operationLog li span:nth-child(1){
+    display: inline-block;
+    width: 120px;
+    color: #666;
+    font-size: 14px;
+
+}
+.operationLog li span:nth-child(2){
+    color: #444;
+}
+
+/*搜索分类*/
+.sousuoAreaInput{
+    width: 500px;
+    /*padding: 6px;*/
+    /*border: 1px solid #aaa;*/
+    /*border-radius: 3px;*/
+}
+.sousuoArea{
+    position: absolute;
+    /*display: flex;*/
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    z-index: 1;
+}
+.sousuoArea>div{
+    flex: 1;
+    /*display: none;*/
+}
+
+.sousuoArea>div:nth-child(even){
+    background: #f0f0f0;
+}
+.sousuoArea>div ul{
+    margin: 0;
+    padding: 0;
+}
+.sousuoArea>div.areaOne ul li{
+    list-style: none;
+    padding: 5px;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+}
+.sousuoArea>div.areaOne ul li:hover{
+    background: #cbe7ef;
+    color: #2293b1;
+}
+.sousuoArea>div.areaTwo{
+    /*height: 364px;*/
+}
+.sousuoArea>div.areaTwo ul{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sousuoArea>div.areaTwo ul li{
+    flex: 1;
+    list-style: none;
+    color: #888;
+    font-size: 13px;
+}
+
+.form1 input[type=text]{
+    border: 0!important;
+    background: none;
+}
+.form1 textarea{
+    background: none;
+}
+
+
+.layui-tab-content{
+    display: none;
+}
+.layui-tab-content.action{
+    display: block;
+}
+
+a.logistics{
+    display: inline-block;
+}
+a.logistics input{
+    color: #00a3e8;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logisticsDiv{
+    position: absolute;
+    padding: 0;
+    width: 300px;
+    display: none;
+}
+span.jiantou{
+    position: relative;
+    top: 0;
+    left: 54%;
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    border: 5px solid transparent;
+    border-bottom-color: #00a3e8;
+
+}
+.logisticsDiv>div{
+    border: 1px solid #00a3e8;
+    padding: 8px;
+    border-radius: 3px;
+    background: #fff;
+    margin-top: -4px;
+    box-shadow: 0 0 10px #ccc;
+}
+.logisticsDiv>div>ul li{
+    list-style: none;
+    padding-left: 18px;
+    color: #666;
+    margin-top: 10px;
+}
+.logisticsDiv>div>ul li:before{
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #666;
+    margin-left: -10px;
+}
+.logisticsDiv>div>ul li p{
+    margin-top: -15px;
+    margin-bottom: 6px;
+}
+.logisticsDiv>div>ul li:nth-child(1):before{
+    background: #00a3e8;
+}
+.logisticsDiv>div>ul li:nth-child(1){
+    color: orange;
+}
+
+.addDecP{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.addorder h3{
+    margin: 10px;
+    color: #00a3e8;
+    font-weight: bold;
+}
+
+#detailsorder input{
+    border: 0;
+    background: none;
+}
+
+input.edit ,input.noedit{
+    border: 0!important;
+    color: #00a3e8!important;
+}
+input.edit:hover ,input.noedit:hover,input.edit:active ,input.noedit:active{
+    background: none!important;
+    border: 0!important;
+    color: #00a3e8!important;
+}

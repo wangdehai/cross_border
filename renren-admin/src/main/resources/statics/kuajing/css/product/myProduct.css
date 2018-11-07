@@ -1,0 +1,277 @@
+
+/*搜索*/
+.search1{
+    overflow: hidden;
+}
+.search1 input{
+    height: 35px;
+    border: 1px solid #d8dce5;
+    border-radius: 4px;
+    padding-left: 6px;
+    margin-right: 10px;
+}
+.search1 select{
+    height: 35px;
+    border: 1px solid #d8dce5;
+    border-radius: 4px;
+    padding-left: 6px;
+    margin-right: 10px;
+}
+.search1 .sousuo{
+    height: 33px;
+    padding: 0 10px;
+    border-radius: 4px;
+    border: 1px solid #00a3e8;
+    margin-left: 10px;
+    background: #fff;
+
+}
+.search1 .create{
+    float: right;
+    margin-right: 10px;
+    padding: 0 15px;
+    height: 35px;
+    border-radius: 20px;
+    border: 0;
+    color:#fff;
+    background: url("../../img/create_bg.png");
+    background-size: 100% 100%;
+}
+
+/*搜索分类*/
+.sousuoAreaInput{
+    /*width: 50%;*/
+    /*padding: 6px;*/
+    /*border: 1px solid #aaa;*/
+    /*border-radius: 3px;*/
+}
+.sousuoArea{
+    position: absolute;
+    /*display: flex;*/
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    z-index: 1;
+}
+.sousuoArea>div{
+    flex: 1;
+    /*display: none;*/
+}
+
+.sousuoArea>div:nth-child(even){
+    background: #f0f0f0;
+}
+.sousuoArea>div ul{
+    margin: 0;
+    padding: 0;
+}
+.sousuoArea>div.areaOne ul li{
+    list-style: none;
+    padding: 5px;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+}
+.sousuoArea>div.areaOne ul li:hover{
+    background: #cbe7ef;
+    color: #2293b1;
+}
+.sousuoArea>div.areaTwo{
+    /*height: 364px;*/
+}
+.sousuoArea>div.areaTwo ul{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sousuoArea>div.areaTwo ul li{
+    flex: 1;
+    list-style: none;
+    color: #888;
+    font-size: 13px;
+}
+
+/*筛选*/
+.screen{
+    margin: 10px 0;
+    background: rgba(255,255,255,.6);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.screen>div{
+    display: flex;
+    margin: 6px 0;
+    line-height: 25px;
+}
+.screen>div>span{
+    color: #333;
+    font-weight: bold;
+}
+.screen>div ul{
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.screen>div ul li{
+    width: 90px;
+    margin-left: 20px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 13px;
+    color: #444;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 12.5px;
+    font-weight: bold;
+    /*border: 1px solid transparent;*/
+}
+.screen>div ul li span{
+    font-weight: normal;
+    color: #777;
+}
+.screen>div ul li.action{
+    /*border: 1px solid #df4950;*/
+    color: #ef5b13;
+
+}
+.screen>div ul li.action span{
+    color: #e06f38;
+}
+
+/*操作*/
+.operation{
+    background: rgba(255,255,255,.6);
+    padding: 10px 15px;
+    border-radius: 5px;
+    line-height: 28px;
+    overflow: hidden;
+}
+.operation .radiobox
+{
+    position: relative;
+    padding-left: 8px;
+}
+.operation .radiobox:before{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #00a3e8;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 2px;
+    left: 7px;
+}
+.operation .radiobox.action span:before{
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00a3e8;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+}
+input[type=checkbox]:checked:before{
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00a3e8;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+}
+input[type=checkbox]{
+    margin-right: 6px;
+    width: 10px;
+    height: 10px;
+}
+.operation button{
+    margin-left: 15px;
+    padding: 4px 15px;
+    border: 0;
+    border-radius: 14px;
+    background: #c6eeff;
+    box-shadow: 0 0 5px #c6eeff;
+    color: #555;
+}
+.operation button.del , .operation button.updata{
+    background: #fecb9c;
+    box-shadow: 0 0 10px #fecb9c;
+}
+
+/*统计*/
+.statistics{
+    float: right;
+    text-align: right;
+    padding-right: 5px;
+    color: #777;
+    /*padding-top: 15px;*/
+}
+.statistics span{
+    margin-right: 10px;
+}
+
+/*产品*/
+.pro_list .item{
+    position: relative;
+    display: inline-block;
+    border: 2px solid #ccc;
+    margin: 10px 10px 10px 0;
+    width: calc(16.6% - 14px);
+    cursor: pointer;
+}
+.pro_list .item:hover,.pro_list .item.action{
+    border: 2px solid #00a3e8;
+    box-shadow: 0 0 10px #888;
+}
+.pro_list .item.action{
+     background: rgba(183,229,248,.2);
+ }
+.pro_list .item img{
+    width: 100%;
+}
+.pro_list .item h3{
+    height: 40px;
+    overflow: hidden;
+    padding: 10px;
+}
+.pro_list .item h3 a{
+    color:#333;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.pro_list .item h3 a:hover{
+    color: #32ace9;
+}
+.pro_list .footer{
+    padding: 0 10px 10px 10px;
+}
+.pro_list .footer p{
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.pro_list span.price{
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-weight: bold;
+    color: #32ace9;
+    font-size: 18px;
+}
+.pro_list span.price span{
+    font-size: 22px;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/order/myOrder.css" media="all">
+    <style>
+        .layui-col-md3{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="step">
+
+    <!--搜索区域-->
+    <div class="search1">
+        <input type="text" class="sousuoAreaInput" placeholder="产品类目">
+        <input type="text" placeholder="标题">
+        <input type="text" placeholder="SKU">
+        <input type="text" class="sousuoAreaInput" placeholder="产品类目">
+        <input type="text" placeholder="标题">
+        <input type="text" placeholder="SKU">
+        <input type="text" class="sousuoAreaInput" placeholder="产品类目">
+        <input type="text" placeholder="标题">
+        <input type="text" placeholder="SKU">
+        <div style="display: inline-block;">
+            <el-date-picker
+                    v-model="value9"
+                    type="daterange"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    default-value="">
+            </el-date-picker>
+        </div>
+
+        <button class="sousuo">搜索</button>
+
+    </div>
+    <!--筛选区域-->
+    <div class="screen">
+        <div class="audit">
+            <span class="red">全部 <span>{{ screenData.orderAll }}</span></span>
+            <ul>
+                <li class="org">待付款<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="blue">已付款<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="org">需发货<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="blue">已采购<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="green">国际发货<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="blue">已签收<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="red">取消<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="org">缺货<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="red">退货<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="green">补发<span>（{{ screenData.auditAll }}）</span></li>
+                <li class="red">问题<span>（{{ screenData.auditAll }}）</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+    <!--操作区域-->
+    <div class="operation">
+        <button class="addBtn"><i class="layui-icon layui-icon-add-1"></i> 添加订单</button>
+
+        <!--统计-->
+        <div class="statistics">
+            核算订单数: <span>{{ statistics.orderNum }}</span>
+            总金额: <span>{{ statistics.allPrice }}</span>
+            利润: <span>{{ statistics.profit }}</span>
+            运费: <span>{{ statistics.freight }}</span>
+            采购: <span>{{ statistics.purchase }}</span>
+            退款数: <span>{{ statistics.refund }}</span>
+            退款成本: <span>{{ statistics.refundCost }}</span>
+        </div>
+    </div>
+
+
+    <table>
+        <tr>
+            <th>订单号</th>
+            <th>图片</th>
+            <th>销售单号</th>
+            <th>金额</th>
+            <th>成本（￥）</th>
+            <th>利润（￥）</th>
+            <th>状态</th>
+            <th>国际运单</th>
+            <th>国内运单</th>
+            <th>下单时间</th>
+        </tr>
+        <tr v-for = 'item in prolist'>
+            <td>{{ item.id }}<br/><span class="brSpan"><img :src="item.country1" alt=""> {{ item.country }}</span></td>
+            <td class="imgtd"><img :src="item.imgUrl" alt=""></td>
+            <td><a href="orderDetails.html">{{ item.orderNum }}</a> <br/><span class="brSpan"><img src="${request.contextPath}/statics/kuajing/img/yamaxun.jpg" alt=""> {{ item.shop }} <img
+                    src="" alt=""> {{ item.country }}</span></td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.cost }}</td>
+            <td>{{ item.profit }}</td>
+            <td>
+                <span v-if="item.stateNum == 1" class="org">
+                    {{ item.state }}
+                </span>
+                <span v-if="item.stateNum == 2" class="red">
+                    {{ item.state }}
+                </span>
+                <span v-if="item.stateNum == 3" class="bule">
+                    {{ item.state }}
+                </span>
+                <span v-if="item.stateNum == 4" class="bule1">
+                    {{ item.state }}
+                </span>
+            </td>
+            <td>{{ item.international }}</td>
+            <td>{{ item.domestic }}</td>
+            <td>{{ item.data }}</td>
+        </tr>
+    </table>
+
+
+    <!--分页-->
+    <div id="page" style="text-align: center"></div>
+
+    <div id="addOrder" style="display: none">
+        <h3>添加订单</h3>
+        <span>
+            <label for="">选择店铺</label>
+            <select class="form-control" id="order_marketplace_id">
+                <option value="">-- 请选择 --</option>
+                <option value="3116">baijing(意大利)</option>
+                <option value="3115">baijing(西班牙)</option>
+                <option value="3114">baijing(德国)</option>
+                <option value="3113">baijing(英国)</option>
+                <option value="3112">baijing(法国)</option>
+            </select>
+        </span>
+        <br>
+        <span>
+            <label for="">Amazon订单ID</label>
+            <input type="text" placeholder="Amazon订单ID">
+        </span>
+    </div>
+
+</div>
+
+<div class="bigImgDiv"></div>
+
+<script src="${request.contextPath}/statics/kuajing/js/step/order/myOrder.js"></script>
+<script src="${request.contextPath}/statics/kuajing/js/step/product/sousuoArea.js"></script>
+<!--<script src="${request.contextPath}/statics/kuajing/js/step/product/tuozhaiduoxuan.js"></script>-->
+</body>
+</html>

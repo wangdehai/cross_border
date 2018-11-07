@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传产品</title>
+    <#include "/header_kuajing.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/kuajing/css/product/upProduct.css" media="all">
+    <style>
+        .layui-col-md3{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="step">
+    <p>
+        <a href="addUpload.html"><button><i class="layui-icon layui-icon-add-1"></i> 添加</button></a>
+    </p>
+
+    <table>
+        <tr>
+            <th>序号</th>
+            <th>图片</th>
+            <th>授权账户</th>
+            <th>AMAZON类目</th>
+            <th>分类类型</th>
+            <th>更新时间</th>
+            <th>产品状态</th>
+            <th>操作</th>
+        </tr>
+        <tr v-for = 'item in prolist'>
+            <td>{{ item.num }}</td>
+            <td><img :src="item.imgUrl" alt=""></td>
+            <td>{{ item.accNum }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.state }}</td>
+            <td>
+                <div class="operation">
+                    <div>
+                        <i class="layui-icon layui-icon-delete"></i>
+                        <p>删除</p>
+                    </div>
+                    <div>
+                        <i class="layui-icon layui-icon-survey"></i>
+                        <p>编辑</p>
+                    </div>
+                    <div>
+                        <i class="layui-icon layui-icon-refresh-1"></i>
+                        <p>刷新</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <!--分页-->
+    <div id="page" style="text-align: center"></div>
+</div>
+
+<script src="${request.contextPath}/statics/kuajing/js/step/product/upProduct.js"></script>
+<script src="${request.contextPath}/statics/kuajing/js/step/product/sousuoArea.js"></script>
+<!--<script src="${request.contextPath}/statics/kuajing/js/step/product/tuozhaiduoxuan.js"></script>-->
+</body>
+</html>

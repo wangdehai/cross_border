@@ -1,0 +1,63 @@
+.box>p{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 10px 15px;
+    width: 100%;
+    overflow: hidden;
+    background: #f2f2f2;
+    z-index: 2;
+}
+.box>p button{
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 14px;
+    border: 0;
+    background: url("../../img/create_bg.png");
+    background-size: 100% 100%;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 13px;
+}
+.box>p button.save{
+    float: right;
+    margin-right: 20px;
+}
+
+table{
+    width: 100%;
+    margin-top: 45px;
+}
+table tr td,table tr th{
+    padding: 10px;
+}
+table tr th{
+    color: #666;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+table tr td{
+    color: #555;
+    font-size: 13px;
+}
+table tr{
+    background: rgba(255,255,255,.8);
+    border-bottom: 2px solid #f0f0f0;
+}
+table tr:hover{
+    background: rgba(255,255,255,.5);
+    box-shadow: 0 0 5px #ddd;
+}
+table tr:nth-child(1){
+    background: none;
+}
+table tr:nth-child(1):hover{
+    background: none;
+    box-shadow: 0 0 0 transparent;
+}
+table tr td a{
+    margin: 0 10px;
+    color: #00a3e8;
+    font-size: 13px;
+}

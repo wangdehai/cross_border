@@ -1,0 +1,99 @@
+
+.item{
+    margin-bottom: 15px;
+}
+.item h4{
+    font-weight: bold;
+    color: #555;
+    font-size: 16px;
+}
+.item h4:before{
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: -webkit-linear-gradient(bottom, #1e9fff , #63e3f0);
+    background: -moz-linear-gradient(bottom, #1e9fff , #63e3f0);
+    background: linear-gradient(to bottom, #1e9fff , #63e3f0);
+    margin-right: 5px;
+}
+.item div.nav_title{
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+.nav_title ul{
+    display: inline-block;
+}
+.nav_title ul li{
+    display: inline-block;
+    padding: 10px;
+    color: #888;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.nav_title ul li.action{
+    color: #555;
+    font-weight: bold;
+    border-bottom: 3px solid #00a3e8;
+}
+.nav_title select{
+    float: right;
+    height: 28px;
+    width: 180px;
+    background: none;
+    border: 1px solid #d8dce5;
+    border-radius: 4px;
+    padding-left: 6px;
+    margin-right: 10px;
+    color: #666;
+}
+/*统计*/
+.statistics{
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255,255,255,.8);
+    border-radius: 3px;
+}
+.statistics>span:nth-child(1){
+    font-weight: bold;
+}
+.statistics>span{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 13px;
+    color: #555;
+}
+.statistics>span span{
+    color: #00a3e8;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*图表*/
+.chart {
+    height: 300px;
+    display: flex;
+}
+.chart>div{
+    background: rgba(255,255,255,.8);
+    border-radius: 5px;
+    padding: 10px;
+}
+.chart>div:nth-child(1),.chart>div:nth-child(2){
+    flex: 3;
+    margin-right: 10px;
+}
+.chart>div:nth-child(3){
+    flex: 2;
+}
+.chart>div>div{
+    height: 100%;
+}
+
+.chart1>div:nth-child(1),.chart1>div:nth-child(2){
+    flex: 2;
+    margin-right: 10px;
+}
+.chart1>div:nth-child(3){
+    flex: 3;
+}
